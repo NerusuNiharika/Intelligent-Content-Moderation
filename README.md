@@ -146,7 +146,7 @@ Intelligent-Content-Moderation/
 ├── templates/
 ├── static/
 ├── notebook/
-└── screenshots/
+└── screenshots
 ```
 
 ## Installation
