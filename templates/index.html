@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Content Moderation Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="dashboard-card">
+
+            <!-- Header -->
+
+            <div class="top-section">
+
+                <div class="badge">
+                    Content Moderation Dashboard
+                </div>
+
+                <h1>Hate Speech Detection System</h1>
+
+                <p>
+                    Analyze text and classify it as Hate Speech,
+                    Offensive Language, or Neither to support
+                    safer online communication.
+                </p>
+
+            </div>
+
+            <!-- Stats -->
+
+            <div class="stats-section">
+
+                <div class="stat-card">
+                    <h3>24,783</h3>
+                    <p>Tweets</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>3</h3>
+                    <p>Classes</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>TF-IDF</h3>
+                    <p>Vectorizer</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>LinearSVC</h3>
+                    <p>Model</p>
+                </div>
+
+            </div>
+
+            <!-- Input Section -->
+
+            <div class="input-section">
+
+                <label class="section-label">
+                    Enter Text for Analysis
+                </label>
+
+                <textarea
+                    id="user-input"
+                    placeholder="Type or paste text here..."
+                ></textarea>
+
+                <button id="analyze-btn">
+                    Analyze Content
+                </button>
+
+            </div>
+
+            <!-- Loader -->
+
+            <div class="loading hidden" id="loading">
+
+                <div class="loader"></div>
+
+                <span>
+                    Analyzing Content...
+                </span>
+
+            </div>
+
+            <!-- Results -->
+
+            <div class="result-card hidden" id="result-card">
+
+                <div class="result-header">
+                    Analysis Result
+                </div>
+
+                <div class="prediction-box" id="prediction-box">
+                    <span id="prediction-text"></span>
+                </div>
+
+                <!-- Explanation -->
+
+                <div class="info-section">
+
+                    <div class="info-title">
+                        Classification Explanation
+                    </div>
+
+                    <div
+                        class="info-output"
+                        id="prediction-explanation"
+                    ></div>
+
+                </div>
+
+                <!-- Confidence -->
+
+                <div class="confidence-section">
+
+                    <div class="confidence-title">
+                        Confidence Score
+                    </div>
+
+                    <div class="confidence-bar-container">
+
+                        <div
+                            class="confidence-bar"
+                            id="confidence-bar"
+                        ></div>
+
+                    </div>
+
+                    <div
+                        class="confidence-value"
+                        id="confidence-value"
+                    ></div>
+
+                </div>
+
+                <!-- Cleaned Text -->
+
+                <div class="info-section">
+
+                    <div class="info-title">
+                        Processed Text
+                    </div>
+
+                    <div
+                        class="info-output"
+                        id="cleaned-output"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <!-- Model Information -->
+
+            <div class="model-section">
+
+                <h2>Model Information</h2>
+
+                <div class="model-grid">
+
+                    <div class="model-card">
+                        <h4>Dataset</h4>
+                        <p>
+                            Hate Speech and Offensive Language Dataset
+                        </p>
+                    </div>
+
+                    <div class="model-card">
+                        <h4>Algorithm</h4>
+                        <p>
+                            LinearSVC
+                        </p>
+                    </div>
+
+                    <div class="model-card">
+                        <h4>Vectorization</h4>
+                        <p>
+                            TF-IDF
+                        </p>
+                    </div>
+
+                    <div class="model-card">
+                        <h4>Preprocessing</h4>
+                        <p>
+                            Cleaning, Stopword Removal,
+                            Lemmatization
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+
+            <div class="footer">
+
+                Developed using Flask, Scikit-Learn,
+                TF-IDF and LinearSVC
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
