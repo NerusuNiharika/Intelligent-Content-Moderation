@@ -8,13 +8,33 @@ Intelligent Content Moderation is an AI-powered Natural Language Processing (NLP
 * Offensive Language
 * Neither
 
-The project uses a complete machine learning pipeline including text preprocessing, TF-IDF vectorization, model comparison, evaluation, and deployment using Flask.
+The project implements a complete machine learning pipeline including data preprocessing, feature engineering, model comparison, evaluation, and deployment using Flask.
+
+The goal is to assist content moderation systems by automatically identifying harmful or offensive content in user-generated text.
+
+---
+
+## Application Screenshots
+
+### User Interface Overview
+
+![UI Overview](screenshots/ui_overview.png)
+
+### Prediction Demonstration
+
+![Prediction Demo](screenshots/prediction_demo.png)
+
+### System Information
+
+![System Information](screenshots/system_information.png)
 
 ---
 
 ## Problem Statement
 
-Social media platforms generate large amounts of user content every day. Manual moderation is difficult and time-consuming. This project aims to automate the detection of harmful content and assist moderation systems using machine learning.
+Social media platforms generate millions of user posts daily. Manual moderation of harmful content is difficult, time-consuming, and expensive.
+
+This project aims to automate content moderation by detecting and classifying harmful language using Natural Language Processing and Machine Learning techniques.
 
 ---
 
@@ -22,20 +42,21 @@ Social media platforms generate large amounts of user content every day. Manual 
 
 * Hate Speech Detection
 * Offensive Language Detection
-* Neutral Content Detection
+* Neutral Content Classification
 * Advanced Text Preprocessing Pipeline
 * TF-IDF Feature Engineering
 * N-Gram Analysis
-* Multiple Machine Learning Models
+* Multiple Model Comparison
 * Flask-Based Web Application
 * Interactive User Interface
 * Real-Time Text Classification
+* Model Information Dashboard
 
 ---
 
 ## Dataset
 
-The dataset contains labeled social media posts categorized into:
+The dataset consists of labeled social media posts categorized into:
 
 | Label | Category           |
 | ----- | ------------------ |
@@ -43,41 +64,31 @@ The dataset contains labeled social media posts categorized into:
 | 1     | Offensive Language |
 | 2     | Neither            |
 
-The dataset was obtained from Kaggle and includes thousands of social media text samples.
+Dataset Size: **24,783 tweets**
+
+The dataset was obtained from Kaggle and contains real-world social media text used for hate speech and offensive language detection research.
 
 ---
 
 ## NLP Pipeline
 
+```text
 Raw Text
-
-↓
-
+   ↓
 Text Cleaning
-
-↓
-
+   ↓
 Tokenization
-
-↓
-
+   ↓
 Stopword Removal
-
-↓
-
+   ↓
 Lemmatization
-
-↓
-
+   ↓
 TF-IDF Vectorization
-
-↓
-
+   ↓
 Model Training
-
-↓
-
+   ↓
 Prediction
+```
 
 ---
 
@@ -89,11 +100,11 @@ Used as a baseline classifier for multiclass text classification.
 
 ### Multinomial Naive Bayes
 
-A probabilistic text classification algorithm commonly used in NLP tasks.
+A probabilistic machine learning algorithm commonly used in NLP applications.
 
 ### LinearSVC
 
-Selected as the final model due to its superior performance on sparse high-dimensional TF-IDF features.
+Selected as the final model due to its superior performance on sparse high-dimensional TF-IDF feature vectors.
 
 ---
 
@@ -105,7 +116,11 @@ Selected as the final model due to its superior performance on sparse high-dimen
 | Multinomial Naive Bayes | 83.6%    |
 | LinearSVC               | 87.6%    |
 
-Final Model: LinearSVC
+### Final Model
+
+**LinearSVC**
+
+The model was selected after comparative evaluation because it achieved the highest overall performance and handled sparse TF-IDF features effectively.
 
 ---
 
@@ -115,7 +130,7 @@ Final Model: LinearSVC
 
 * Python
 
-### Machine Learning
+### Machine Learning & NLP
 
 * Scikit-Learn
 * NLTK
@@ -132,6 +147,19 @@ Final Model: LinearSVC
 
 ---
 
+## Key NLP Techniques Used
+
+* Text Cleaning
+* Tokenization
+* Stopword Removal
+* Lemmatization
+* TF-IDF Vectorization
+* N-Gram Feature Engineering
+* Sparse Matrix Representation
+* Multiclass Classification
+
+---
+
 ## Project Structure
 
 ```text
@@ -144,38 +172,50 @@ Intelligent-Content-Moderation/
 ├── README.md
 │
 ├── templates/
+│   └── index.html
+│
 ├── static/
+│   ├── style.css
+│   └── script.js
+│
 ├── notebook/
-└── screenshots
+│   └── training.ipynb
+│   └── labeled_data.csv 
+└── screenshots/
+    ├── ui_overview.png
+    ├── prediction_demo.png
+    └── system_information.png
 ```
+
+---
 
 ## Installation
 
-Clone the repository:
+### Clone Repository
 
 ```bash
 git clone https://github.com/yourusername/Intelligent-Content-Moderation.git
 ```
 
-Navigate to the project folder:
+### Navigate to Project Folder
 
 ```bash
 cd Intelligent-Content-Moderation
 ```
 
-Install dependencies:
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the application:
+### Run Application
 
 ```bash
 python app.py
 ```
 
-Open:
+### Open Browser
 
 ```text
 http://127.0.0.1:5000/
@@ -185,24 +225,25 @@ http://127.0.0.1:5000/
 
 ## Key Learnings
 
-* Natural Language Processing
-* Feature Engineering
+* Natural Language Processing Fundamentals
+* Feature Engineering for Text Data
 * TF-IDF Vectorization
 * Sparse Matrix Representation
-* Model Evaluation
-* Precision, Recall and F1 Score
-* Class Imbalance Handling
-* Machine Learning Deployment
-* Flask Application Development
+* Machine Learning Model Comparison
+* Precision, Recall and F1-Score Evaluation
+* Handling Imbalanced Datasets
+* Flask Deployment
+* End-to-End Machine Learning Pipeline Development
 
 ---
 
 ## Challenges Faced
 
 * Class imbalance in the dataset
-* Distinguishing hate speech from offensive language
+* Distinguishing Hate Speech from Offensive Language
 * Misclassification of semantically similar text
-* Balancing model performance across classes
+* Handling noisy social media text
+* Improving minority-class detection performance
 
 ---
 
@@ -213,12 +254,20 @@ http://127.0.0.1:5000/
 * Explainable AI Features
 * Confidence Scoring
 * Real-Time Moderation Dashboard
-* API Deployment
-* Cloud Hosting
+* REST API Development
+* Cloud Deployment
+* User Analytics Dashboard
 
 ---
 
 ## Author
-N Sai Niharika
 
-Developed as an NLP and Machine Learning project focused on automated content moderation and hate speech detection.
+**N Sai Niharika**
+
+Developed as an NLP and Machine Learning project focused on intelligent content moderation, hate speech detection, and offensive language classification.
+
+---
+
+## License
+
+This project is intended for educational, research, and learning purposes.
