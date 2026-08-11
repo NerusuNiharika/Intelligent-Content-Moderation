@@ -1,166 +1,266 @@
-# Intelligent Content Moderation using NLP and Machine Learning
+<div align="center">
 
-## Overview
+# 🛡️ Intelligent Content Moderation
 
-Intelligent Content Moderation is an AI-powered Natural Language Processing (NLP) system designed to automatically classify user-generated text into:
+### *An NLP and Machine Learning system that automatically detects hate speech, offensive language, and neutral content from user-generated text.*
 
-* Hate Speech
-* Offensive Language
-* Neither
+<p>
 
-The project implements a complete machine learning pipeline including data preprocessing, feature engineering, model comparison, evaluation, and deployment using Flask.
+![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge\&logo=python)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-000000?style=for-the-badge\&logo=flask)
+![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E?style=for-the-badge\&logo=scikit-learn)
+![NLTK](https://img.shields.io/badge/NLTK-NLP-green?style=for-the-badge)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Processing-150458?style=for-the-badge\&logo=pandas)
+![NumPy](https://img.shields.io/badge/NumPy-Scientific%20Computing-013243?style=for-the-badge\&logo=numpy)
 
-The goal is to assist content moderation systems by automatically identifying harmful or offensive content in user-generated text.
+</p>
 
----
-
-## Application Screenshots
-
-### User Interface Overview
-
-![UI Overview](screenshots/ui_overview.png)
-
-### Prediction Demonstration
-
-![Prediction Demo](screenshots/prediction_demo.png)
-
-### System Information
-
-![System Information](screenshots/system_information.png)
+</div>
 
 ---
 
-## Problem Statement
+# 📖 Overview
 
-Social media platforms generate millions of user posts daily. Manual moderation of harmful content is difficult, time-consuming, and expensive.
+**Intelligent Content Moderation** is an AI-powered Natural Language Processing and Machine Learning application designed to automatically classify user-generated text into three categories:
 
-This project aims to automate content moderation by detecting and classifying harmful language using Natural Language Processing and Machine Learning techniques.
+* 🔴 Hate Speech
+* 🟠 Offensive Language
+* 🟢 Neither
+
+The project implements a complete end-to-end machine learning pipeline, starting from raw social media text preprocessing and feature engineering to model training, comparative evaluation, and deployment through a Flask web application.
+
+The system uses **TF-IDF vectorization and N-Gram feature engineering** to convert text into numerical representations and evaluates multiple machine learning algorithms to identify the best-performing classification model.
+
+After comparative evaluation, **LinearSVC** was selected as the final model because of its superior performance on sparse, high-dimensional TF-IDF feature representations.
 
 ---
 
-## Features
+# 🎯 Problem Statement
+
+Social media platforms generate millions of user-generated posts every day. Manually identifying harmful, offensive, or abusive content is difficult, time-consuming, and expensive.
+
+Traditional moderation systems may struggle with the large volume and constantly changing nature of online content.
+
+This project aims to automate the initial content moderation process by using **Natural Language Processing and Machine Learning** to identify and classify potentially harmful language.
+
+---
+
+# ✨ Features
+
+### 🛡️ Content Classification
 
 * Hate Speech Detection
 * Offensive Language Detection
 * Neutral Content Classification
-* Advanced Text Preprocessing Pipeline
-* TF-IDF Feature Engineering
-* N-Gram Analysis
-* Multiple Model Comparison
-* Flask-Based Web Application
-* Interactive User Interface
-* Real-Time Text Classification
-* Model Information Dashboard
+* Real-time text classification
 
----
-
-## Dataset
-
-The dataset consists of labeled social media posts categorized into:
-
-| Label | Category           |
-| ----- | ------------------ |
-| 0     | Hate Speech        |
-| 1     | Offensive Language |
-| 2     | Neither            |
-
-Dataset Size: **24,783 tweets**
-
-The dataset was obtained from Kaggle and contains real-world social media text used for hate speech and offensive language detection research.
-
----
-
-## NLP Pipeline
-
-```text
-Raw Text
-   ↓
-Text Cleaning
-   ↓
-Tokenization
-   ↓
-Stopword Removal
-   ↓
-Lemmatization
-   ↓
-TF-IDF Vectorization
-   ↓
-Model Training
-   ↓
-Prediction
-```
-
----
-
-## Machine Learning Models Evaluated
-
-### Logistic Regression
-
-Used as a baseline classifier for multiclass text classification.
-
-### Multinomial Naive Bayes
-
-A probabilistic machine learning algorithm commonly used in NLP applications.
-
-### LinearSVC
-
-Selected as the final model due to its superior performance on sparse high-dimensional TF-IDF feature vectors.
-
----
-
-## Model Performance
-
-| Model                   | Accuracy |
-| ----------------------- | -------- |
-| Logistic Regression     | 85.1%    |
-| Multinomial Naive Bayes | 83.6%    |
-| LinearSVC               | 87.6%    |
-
-### Final Model
-
-**LinearSVC**
-
-The model was selected after comparative evaluation because it achieved the highest overall performance and handled sparse TF-IDF features effectively.
-
----
-
-## Technologies Used
-
-### Programming Language
-
-* Python
-
-### Machine Learning & NLP
-
-* Scikit-Learn
-* NLTK
-* NumPy
-* Pandas
-
-### Web Development
-
-* Flask
-* HTML
-* CSS
-* JavaScript
-* Jinja2
-
----
-
-## Key NLP Techniques Used
+### 🧹 Advanced NLP Preprocessing
 
 * Text Cleaning
 * Tokenization
 * Stopword Removal
 * Lemmatization
-* TF-IDF Vectorization
 * N-Gram Feature Engineering
+
+### 🧠 Machine Learning
+
+* TF-IDF Feature Engineering
 * Sparse Matrix Representation
 * Multiclass Classification
+* Multiple Model Comparison
+* Automated prediction using trained models
+
+### 📊 Model Evaluation
+
+* Accuracy comparison
+* Precision evaluation
+* Recall evaluation
+* F1-score evaluation
+* Comparative model analysis
+
+### 🌐 Web Application
+
+* Flask-based backend
+* Interactive user interface
+* Real-time predictions
+* Model information dashboard
+* Prediction results displayed through a web interface
 
 ---
 
-## Project Structure
+# 🏗️ System Architecture
+
+<p align="center">
+  <img src="screenshots/architecture.png" width="900">
+</p>
+
+The system follows an end-to-end NLP classification architecture.
+
+User text is submitted through the Flask web interface and passed through the same preprocessing and feature engineering pipeline used during model training. The processed text is transformed into TF-IDF features and passed to the trained **LinearSVC classifier**, which predicts one of the three content categories.
+
+---
+
+# 🔄 NLP & Machine Learning Workflow
+
+<p align="center">
+  <img src="screenshots/workflow.png" width="900">
+</p>
+
+The complete machine learning workflow consists of:
+
+1. 📂 Load the labeled social media dataset.
+2. 🧹 Clean and preprocess the raw text.
+3. 🔤 Tokenize the text.
+4. 🚫 Remove unnecessary stopwords.
+5. 🌱 Apply lemmatization.
+6. 🔢 Generate TF-IDF and N-Gram features.
+7. 🧠 Train multiple machine learning models.
+8. 📊 Evaluate model performance.
+9. 🏆 Select LinearSVC as the final model.
+10. 💾 Save the trained model and TF-IDF vectorizer.
+11. 🌐 Integrate the model with Flask.
+12. 📝 Accept user text through the web interface.
+13. 🔍 Transform the input using the saved preprocessing pipeline.
+14. 🤖 Generate the predicted content category.
+15. 📊 Display the classification result to the user.
+
+---
+
+# 📊 Dataset
+
+The project uses a labeled dataset of **24,783 social media posts** obtained from Kaggle.
+
+The dataset contains three target categories:
+
+| Label | Category           |
+| ----: | ------------------ |
+| **0** | Hate Speech        |
+| **1** | Offensive Language |
+| **2** | Neither            |
+
+The dataset contains real-world social media text and is used to train and evaluate the content classification models.
+
+---
+
+# 🧹 NLP Pipeline
+
+The text processing pipeline consists of multiple stages:
+
+```text
+Raw Text
+    ↓
+Text Cleaning
+    ↓
+Tokenization
+    ↓
+Stopword Removal
+    ↓
+Lemmatization
+    ↓
+TF-IDF Vectorization
+    ↓
+N-Gram Feature Engineering
+    ↓
+Machine Learning Model
+    ↓
+Content Classification
+```
+
+---
+
+# 🧠 Machine Learning Models
+
+Three machine learning algorithms were evaluated during the project.
+
+### Logistic Regression
+
+Logistic Regression was used as a baseline multiclass classification model to establish an initial performance benchmark.
+
+### Multinomial Naive Bayes
+
+Multinomial Naive Bayes was evaluated because of its effectiveness for traditional text classification problems involving word-frequency-based features.
+
+### LinearSVC
+
+LinearSVC was selected as the final model after comparative evaluation.
+
+It achieved the highest accuracy and performed effectively with the sparse, high-dimensional feature representation generated by TF-IDF.
+
+---
+
+# 📈 Model Performance
+
+| Model                       |  Accuracy |
+| --------------------------- | --------: |
+| **Logistic Regression**     | **85.1%** |
+| **Multinomial Naive Bayes** | **83.6%** |
+| **LinearSVC**               | **87.6%** |
+
+### 🏆 Final Model
+
+**LinearSVC — 87.6% Accuracy**
+
+LinearSVC was selected as the final classification model because it achieved the best overall accuracy among the evaluated models and is well suited for high-dimensional sparse text representations.
+
+---
+
+# 🛠️ Tech Stack
+
+| Category                        | Technologies                                            |
+| ------------------------------- | ------------------------------------------------------- |
+| **Programming Language**        | Python                                                  |
+| **Machine Learning**            | Scikit-Learn                                            |
+| **Natural Language Processing** | NLTK                                                    |
+| **Data Processing**             | Pandas, NumPy                                           |
+| **Feature Engineering**         | TF-IDF, N-Grams                                         |
+| **Classification**              | Logistic Regression, Multinomial Naive Bayes, LinearSVC |
+| **Backend**                     | Flask                                                   |
+| **Frontend**                    | HTML, CSS, JavaScript                                   |
+| **Template Engine**             | Jinja2                                                  |
+| **Model Storage**               | Pickle                                                  |
+| **Dataset**                     | Kaggle                                                  |
+
+---
+
+# 📸 Application Preview
+
+## 🏠 User Interface
+
+<p align="center">
+  <img src="screenshots/ui_overview.png" width="900">
+</p>
+
+The application provides a simple interface where users can enter text and submit it for content classification.
+
+---
+
+## 🔍 Prediction Demonstration
+
+<p align="center">
+  <img src="screenshots/prediction_demo.png" width="900">
+</p>
+
+The system processes the submitted text and displays the predicted category in real time.
+
+Possible predictions include:
+
+* Hate Speech
+* Offensive Language
+* Neither
+
+---
+
+## ℹ️ System Information
+
+<p align="center">
+  <img src="screenshots/system_information.png" width="900">
+</p>
+
+The system information section provides details about the underlying machine learning model and NLP pipeline used by the application.
+
+---
+
+# 📂 Project Structure
 
 ```text
 Intelligent-Content-Moderation/
@@ -179,9 +279,12 @@ Intelligent-Content-Moderation/
 │   └── script.js
 │
 ├── notebook/
-│   └── training.ipynb
-│   └── labeled_data.csv 
+│   ├── training.ipynb
+│   └── labeled_data.csv
+│
 └── screenshots/
+    ├── architecture.png
+    ├── workflow.png
     ├── ui_overview.png
     ├── prediction_demo.png
     └── system_information.png
@@ -189,33 +292,30 @@ Intelligent-Content-Moderation/
 
 ---
 
-## Installation
+# ⚙️ Installation
 
-### Clone Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/yourusername/Intelligent-Content-Moderation.git
-```
-
-### Navigate to Project Folder
-
-```bash
 cd Intelligent-Content-Moderation
 ```
 
-### Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run Application
+### 3. Run the Application
 
 ```bash
 python app.py
 ```
 
-### Open Browser
+### 4. Open the Application
+
+Open the following address in your browser:
 
 ```text
 http://127.0.0.1:5000/
@@ -223,44 +323,119 @@ http://127.0.0.1:5000/
 
 ---
 
-## Key Learnings
+# 🧪 Model Training
 
-* Natural Language Processing Fundamentals
-* Feature Engineering for Text Data
-* TF-IDF Vectorization
+The complete model development process is available in:
+
+```text
+notebook/training.ipynb
+```
+
+The notebook covers:
+
+* Dataset loading
+* Exploratory data analysis
+* Text preprocessing
+* Feature engineering
+* TF-IDF vectorization
+* Model training
+* Model comparison
+* Performance evaluation
+* Final model selection
+* Model serialization
+
+The trained model and vectorizer are stored as:
+
+```text
+final_model.pkl
+tfidf_vectorizer.pkl
+```
+
+---
+
+# 🔑 Key NLP Techniques
+
+### Text Cleaning
+
+Removes unnecessary characters, symbols, and noise from social media text.
+
+### Tokenization
+
+Breaks text into individual tokens for further processing.
+
+### Stopword Removal
+
+Removes common words that provide limited value for classification.
+
+### Lemmatization
+
+Reduces words to their base forms to improve feature consistency.
+
+### TF-IDF
+
+Converts text into numerical feature vectors based on the importance of terms within the dataset.
+
+### N-Gram Analysis
+
+Captures combinations of words to preserve additional contextual information beyond individual terms.
+
+---
+
+# 🎓 Learning Outcomes
+
+Through this project, I gained practical experience in:
+
+* Natural Language Processing
+* Text Preprocessing
+* TF-IDF Feature Engineering
+* N-Gram Analysis
 * Sparse Matrix Representation
-* Machine Learning Model Comparison
+* Multiclass Machine Learning
+* Model Comparison
 * Precision, Recall and F1-Score Evaluation
 * Handling Imbalanced Datasets
-* Flask Deployment
-* End-to-End Machine Learning Pipeline Development
+* Flask Web Development
+* Machine Learning Model Deployment
+* End-to-End ML Application Development
 
 ---
 
-## Challenges Faced
+# ⚠️ Challenges Faced
 
-* Class imbalance in the dataset
-* Distinguishing Hate Speech from Offensive Language
-* Misclassification of semantically similar text
-* Handling noisy social media text
-* Improving minority-class detection performance
+### Class Imbalance
 
----
+The dataset contains uneven distributions across different content categories, making minority-class detection more challenging.
 
-## Future Improvements
+### Similar Language Patterns
 
-* BERT Integration
-* Transformer-Based Classification
-* Explainable AI Features
-* Confidence Scoring
-* Real-Time Moderation Dashboard
-* REST API Development
-* Cloud Deployment
-* User Analytics Dashboard
+Hate speech and offensive language can contain semantically similar expressions, making accurate classification difficult.
+
+### Noisy Social Media Text
+
+Social media content often contains abbreviations, misspellings, slang, special characters, and other forms of noise.
+
+### Minority-Class Detection
+
+Improving detection of less-represented categories while maintaining overall model performance was an important challenge.
 
 ---
 
-## Author
+# 🚀 Future Enhancements
+
+* 🤗 BERT-based Text Classification
+* 🧠 Transformer-Based Models
+* 🔍 Explainable AI for Predictions
+* 📊 Prediction Confidence Scores
+* 📈 Real-Time Moderation Dashboard
+* 🔌 REST API Development
+* ☁️ Cloud Deployment
+* 👥 User Analytics Dashboard
+* 📱 Moderation Management Interface
+* 🌍 Multilingual Content Moderation
+
+---
+
+# 👩‍💻 Author
 
 **N Sai Niharika**
 
@@ -268,6 +443,6 @@ Developed as an NLP and Machine Learning project focused on intelligent content 
 
 ---
 
-## License
+# 📄 License
 
 This project is intended for educational, research, and learning purposes.
