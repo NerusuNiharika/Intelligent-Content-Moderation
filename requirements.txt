@@ -5,3 +5,4 @@ pandas
 nltk
 joblib
 scipy
+gunicorn
