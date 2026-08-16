@@ -4,6 +4,8 @@
 
 ### *An NLP and Machine Learning system that automatically detects hate speech, offensive language, and neutral content from user-generated text.*
 
+🚀 **[Live Demo](https://intelligent-content-moderation-w3di.onrender.com/)**
+
 <p>
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge\&logo=python)
@@ -428,7 +430,6 @@ Improving detection of less-represented categories while maintaining overall mod
 * 📊 Prediction Confidence Scores
 * 📈 Real-Time Moderation Dashboard
 * 🔌 REST API Development
-* ☁️ Cloud Deployment
 * 👥 User Analytics Dashboard
 * 📱 Moderation Management Interface
 * 🌍 Multilingual Content Moderation
