@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +12,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 </head>
+
 <body>
 
     <div class="container">
@@ -37,13 +42,14 @@
 
             </div>
 
+
             <!-- Stats -->
 
             <div class="stats-section">
 
                 <div class="stat-card">
                     <h3>24,783</h3>
-                    <p>Tweets</p>
+                    <p>Posts</p>
                 </div>
 
                 <div class="stat-card">
@@ -63,11 +69,15 @@
 
             </div>
 
+
             <!-- Input Section -->
 
             <div class="input-section">
 
-                <label class="section-label">
+                <label
+                    class="section-label"
+                    for="user-input"
+                >
                     Enter Text for Analysis
                 </label>
 
@@ -76,15 +86,22 @@
                     placeholder="Type or paste text here..."
                 ></textarea>
 
-                <button id="analyze-btn">
+                <button
+                    id="analyze-btn"
+                    type="button"
+                >
                     Analyze Content
                 </button>
 
             </div>
 
+
             <!-- Loader -->
 
-            <div class="loading hidden" id="loading">
+            <div
+                class="loading hidden"
+                id="loading"
+            >
 
                 <div class="loader"></div>
 
@@ -94,17 +111,28 @@
 
             </div>
 
+
             <!-- Results -->
 
-            <div class="result-card hidden" id="result-card">
+            <div
+                class="result-card hidden"
+                id="result-card"
+            >
 
                 <div class="result-header">
                     Analysis Result
                 </div>
 
-                <div class="prediction-box" id="prediction-box">
+
+                <!-- Prediction -->
+
+                <div
+                    class="prediction-box"
+                    id="prediction-box"
+                >
                     <span id="prediction-text"></span>
                 </div>
+
 
                 <!-- Explanation -->
 
@@ -121,12 +149,13 @@
 
                 </div>
 
-                <!-- Confidence -->
+
+                <!-- Prediction Score -->
 
                 <div class="confidence-section">
 
                     <div class="confidence-title">
-                        Confidence Score
+                        Prediction Score
                     </div>
 
                     <div class="confidence-bar-container">
@@ -145,7 +174,8 @@
 
                 </div>
 
-                <!-- Cleaned Text -->
+
+                <!-- Processed Text -->
 
                 <div class="info-section">
 
@@ -162,6 +192,7 @@
 
             </div>
 
+
             <!-- Model Information -->
 
             <div class="model-section">
@@ -171,37 +202,53 @@
                 <div class="model-grid">
 
                     <div class="model-card">
+
                         <h4>Dataset</h4>
+
                         <p>
                             Hate Speech and Offensive Language Dataset
                         </p>
+
                     </div>
 
+
                     <div class="model-card">
+
                         <h4>Algorithm</h4>
+
                         <p>
                             LinearSVC
                         </p>
+
                     </div>
 
+
                     <div class="model-card">
+
                         <h4>Vectorization</h4>
+
                         <p>
                             TF-IDF
                         </p>
+
                     </div>
 
+
                     <div class="model-card">
+
                         <h4>Preprocessing</h4>
+
                         <p>
                             Cleaning, Stopword Removal,
                             Lemmatization
                         </p>
+
                     </div>
 
                 </div>
 
             </div>
+
 
             <!-- Footer -->
 
@@ -216,7 +263,11 @@
 
     </div>
 
+
+    <!-- JavaScript -->
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
+
 </html>

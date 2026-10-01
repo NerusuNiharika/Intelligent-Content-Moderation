@@ -264,9 +264,7 @@ button:hover {
     text-align: right;
     color: #e2e8f0;
 }
-
 /* Model Section */
-
 .model-section {
     margin-top: 40px;
 }
@@ -324,7 +322,6 @@ button:hover {
     .dashboard-card {
         padding: 25px;
     }
-
     .stats-section {
         grid-template-columns: 1fr;
     }

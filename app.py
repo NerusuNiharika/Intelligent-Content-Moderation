@@ -6,68 +6,99 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
+
 app = Flask(__name__)
 
+
+# =========================================================
 # Download required NLTK resources
-nltk.download('stopwords')
-nltk.download('wordnet')
+# =========================================================
 
-# Load model and vectorizer
-model = joblib.load('final_model.pkl')
-vectorizer = joblib.load('tfidf_vectorizer.pkl')
+nltk.download("stopwords")
+nltk.download("wordnet")
 
+
+# =========================================================
+# Load trained model and TF-IDF vectorizer
+# =========================================================
+
+model = joblib.load("final_model.pkl")
+vectorizer = joblib.load("tfidf_vectorizer.pkl")
+
+
+# =========================================================
 # NLP setup
+# =========================================================
+
 lemmatizer = WordNetLemmatizer()
 
-stop_words = set(stopwords.words('english'))
+stop_words = set(stopwords.words("english"))
 
-# Keep negation words
-negation_words = {'no', 'not', 'nor'}
+# Keep important negation words
+negation_words = {"no", "not", "nor"}
 stop_words = stop_words - negation_words
 
+
+# =========================================================
+# Text preprocessing
+# =========================================================
 
 def clean_text(text):
 
     text = str(text)
 
-    # lowercase
+    # Convert to lowercase
     text = text.lower()
 
-    # remove URLs
-    text = re.sub(r'http\S+|www\S+', '', text)
+    # Remove URLs
+    text = re.sub(r"http\S+|www\S+", "", text)
 
-    # remove mentions and hashtags
-    text = re.sub(r'@\w+|#\w+', '', text)
+    # Remove mentions and hashtags
+    text = re.sub(r"@\w+|#\w+", "", text)
 
-    # remove html artifacts
-    text = re.sub(r'&amp;|&lt;|&gt;', '', text)
+    # Remove HTML artifacts
+    text = re.sub(r"&amp;|&lt;|&gt;", "", text)
 
-    # remove RT
-    text = re.sub(r'\brt\b', '', text)
+    # Remove retweet marker
+    text = re.sub(r"\brt\b", "", text)
 
-    # remove numbers
-    text = re.sub(r'\d+', '', text)
+    # Remove numbers
+    text = re.sub(r"\d+", "", text)
 
-    # normalize repeated characters
-    text = re.sub(r'(.)\1{2,}', r'\1\1', text)
+    # Normalize repeated characters
+    # Example: "soooo" -> "soo"
+    text = re.sub(r"(.)\1{2,}", r"\1\1", text)
 
-    # remove punctuation and special chars
-    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    # Remove punctuation and special characters
+    text = re.sub(r"[^a-zA-Z\s]", "", text)
 
-    # tokenize
+    # Tokenization
     tokens = text.split()
 
-    # remove stopwords
-    tokens = [word for word in tokens if word not in stop_words]
+    # Remove stopwords
+    tokens = [
+        word for word in tokens
+        if word not in stop_words
+    ]
 
-    # lemmatization
-    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    # Lemmatization
+    tokens = [
+        lemmatizer.lemmatize(word)
+        for word in tokens
+    ]
 
-    # remove short tokens
-    tokens = [word for word in tokens if len(word) > 2]
+    # Remove very short tokens
+    tokens = [
+        word for word in tokens
+        if len(word) > 2
+    ]
 
     return " ".join(tokens)
 
+
+# =========================================================
+# Label mapping
+# =========================================================
 
 label_map = {
     0: "Hate Speech",
@@ -76,16 +107,25 @@ label_map = {
 }
 
 
-@app.route('/')
+# =========================================================
+# Home page
+# =========================================================
+
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/predict', methods=['POST'])
+# =========================================================
+# Prediction API
+# =========================================================
+
+@app.route("/predict", methods=["POST"])
 def predict():
 
     try:
 
+        # Get JSON data from frontend
         data = request.get_json()
 
         if not data:
@@ -93,34 +133,66 @@ def predict():
                 "error": "No JSON data received"
             }), 400
 
+        # Get user text
         user_text = data.get("text", "")
 
+        # Check empty input
+        if not user_text or not str(user_text).strip():
+            return jsonify({
+                "error": "Please enter some text"
+            }), 400
+
+        # Clean input text
         cleaned_text = clean_text(user_text)
 
+        # Check if text became empty after preprocessing
+        if not cleaned_text.strip():
+            return jsonify({
+                "error": "Text contains no meaningful words after preprocessing"
+            }), 400
+
+        # Convert text into TF-IDF features
         vectorized_text = vectorizer.transform([cleaned_text])
 
+        # Predict class
         prediction = model.predict(vectorized_text)[0]
 
-        confidence = 95.0
+        # Convert numeric prediction into category
+        predicted_label = label_map.get(
+            int(prediction),
+            str(prediction)
+        )
+
+        # -------------------------------------------------
+        # LinearSVC decision score
+        # -------------------------------------------------
+        # LinearSVC does not provide probabilities by default.
+        # Therefore, this is a model decision score, NOT a
+        # true probability/confidence percentage.
+
+        prediction_score = None
 
         try:
-            decision_scores = model.decision_function(vectorized_text)
+
+            decision_scores = model.decision_function(
+                vectorized_text
+            )
 
             if hasattr(decision_scores, "max"):
-                confidence = round(
-                    float(abs(decision_scores.max()) * 10),
-                    2
+
+                prediction_score = round(
+                    float(abs(decision_scores.max())),
+                    4
                 )
 
-                confidence = min(confidence, 99.0)
-
         except Exception:
-            pass
+            prediction_score = None
 
+        # Return result to frontend
         return jsonify({
-            "prediction": label_map.get(int(prediction), str(prediction)),
+            "prediction": predicted_label,
             "cleaned_text": cleaned_text,
-            "confidence": confidence
+            "prediction_score": prediction_score
         })
 
     except Exception as e:
@@ -134,6 +206,10 @@ def predict():
             "error": str(e)
         }), 500
 
+
+# =========================================================
+# Run Flask application
+# =========================================================
 
 if __name__ == "__main__":
     app.run(debug=True)
