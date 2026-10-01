@@ -239,7 +239,7 @@ The application provides a simple interface where users can enter text and submi
 ## 🔍 Prediction Demonstration
 
 <p align="center">
-  <img src="screenshots/prediction_demo.png" width="900">
+  <img src="screenshots/prediction_info.png" width="900">
 </p>
 
 The system processes the submitted text and displays the predicted category in real time.
